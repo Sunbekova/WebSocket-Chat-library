@@ -1,11 +1,41 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("maven-publish")
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("release") {
+            from(components["release"])
+
+            groupId = "com.example.websocketchatlibrary"
+            artifactId = "WebSocketChatlibrary"
+            version = "3.0.0"
+
+            pom {
+                name.set("Android Kotlin WebSocket Chat Library")
+                description.set("WebSocket chat library using wss://echo.websocket.org.")
+                url.set("https://github.com/Sunbekova/WebSocketChatlibrary")
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/Sunbekova/WebSocketChatlibrary")
+            credentials {
+                username = "Sunbekova"
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
 }
 
 android {
     namespace = "com.example.websocketchatlibrary"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.websocketchatlibrary"
@@ -33,9 +63,16 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
 }
 
 dependencies {
+
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

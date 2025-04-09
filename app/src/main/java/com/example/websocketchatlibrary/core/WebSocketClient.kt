@@ -1,4 +1,4 @@
-package com.example.library.core
+package com.example.websocketchatlibrary.core
 
 import okhttp3.*
 import okio.ByteString
