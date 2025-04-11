@@ -2,6 +2,10 @@
 
 This is a lightweight Android library that adds a fully functional WebSocket-based chat UI to any app with a single line of code. It's designed to be modular and reusable, separating networking from the UI.
 
+---
+Uses as WebSocket server `wss://echo.websocket.org`.
+
+
 ## Features
 
 - Plug & play ChatActivity launcher
@@ -83,6 +87,11 @@ binding.startChatButton.setOnClickListener {
 ```
 
 > `ChatLauncher` is a singleton object that launches `ChatActivity` from the library.
+
+---
+
+## Preview
+https://github.com/user-attachments/assets/8a138462-2c8a-41d3-832d-4ddb88aadee9
 
 ---
 
