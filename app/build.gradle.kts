@@ -1,33 +1,37 @@
+import java.util.Properties
+
 plugins {
-    alias(libs.plugins.android.application)
+    id("com.android.library")
     alias(libs.plugins.kotlin.android)
     id("maven-publish")
 }
 
-publishing {
-    publications {
-        create<MavenPublication>("release") {
-            from(components["release"])
+val localProperties = Properties().apply {
+    load(File(rootProject.projectDir, "local.properties").inputStream())
+}
+val mavenUsername: String = localProperties["mavenUsername"] as String
+val mavenPassword: String = localProperties["mavenPassword"] as String
 
-            groupId = "com.example.websocketchatlibrary"
-            artifactId = "WebSocketChatlibrary"
-            version = "3.0.0"
+afterEvaluate{
+    publishing{
+        publications {
+            create<MavenPublication>("release"){
+                from(components["release"])
 
-            pom {
-                name.set("Android Kotlin WebSocket Chat Library")
-                description.set("WebSocket chat library using wss://echo.websocket.org.")
-                url.set("https://github.com/Sunbekova/WebSocketChatlibrary")
+                groupId = "com.github.Sunbekova"
+                artifactId = "WebSocket-Chat-library"
+                version = "4.1.1"
             }
         }
-    }
 
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/Sunbekova/WebSocketChatlibrary")
-            credentials {
-                username = "Sunbekova"
-                password = System.getenv("GITHUB_TOKEN")
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/Sunbekova/WebSocket-Chat-library")
+                credentials {
+                    username = mavenUsername
+                    password = mavenPassword
+                }
             }
         }
     }
@@ -38,11 +42,11 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.websocketchatlibrary"
+        //applicationId = "com.example.websocketchatlibrary"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        //targetSdk = 34
+        //versionCode = 1
+        //versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
