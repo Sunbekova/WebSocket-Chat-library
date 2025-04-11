@@ -6,18 +6,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.websocketchatlibrary.core.ChatWebSocketListener
 import com.example.websocketchatlibrary.core.WebSocketClient
+import com.example.websocketchatlibrary.databinding.ActivityChatBinding
 import com.example.websocketchatlibrary.ui.adapter.ChatAdapter
-import com.example.websocketchatlibrary.databinding.ActivityMainBinding
 import com.example.websocketchatlibrary.ui.model.ChatMessage
 
 internal class ChatActivity : AppCompatActivity(), ChatWebSocketListener {
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityChatBinding
     private lateinit var adapter: ChatAdapter
     private lateinit var webSocketClient: WebSocketClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         adapter = ChatAdapter()
