@@ -19,8 +19,8 @@ afterEvaluate{
                 from(components["release"])
 
                 groupId = "com.github.Sunbekova"
-                artifactId = "WebSocket-Chat-library"
-                version = "4.1.1"
+                artifactId = "websocketchatlibrary"
+                version = "4.2.1"
             }
         }
 
