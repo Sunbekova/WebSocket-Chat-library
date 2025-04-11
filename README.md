@@ -127,6 +127,11 @@ websocketchatlibrary/
 </application>
 ```
 
+- Make sure that you have an internet connection in `AndroidManifest.xml `:
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
+```
+
 ---
 
 ## Author
